@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2023 at 02:22 PM
+-- Generation Time: Sep 08, 2023 at 07:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.4
 
@@ -289,7 +289,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (197, 'Can add changesponserlogs', 50, 'add_changesponserlogs'),
 (198, 'Can change changesponserlogs', 50, 'change_changesponserlogs'),
 (199, 'Can delete changesponserlogs', 50, 'delete_changesponserlogs'),
-(200, 'Can view changesponserlogs', 50, 'view_changesponserlogs');
+(200, 'Can view changesponserlogs', 50, 'view_changesponserlogs'),
+(201, 'Can add categorymodel', 51, 'add_categorymodel'),
+(202, 'Can change categorymodel', 51, 'change_categorymodel'),
+(203, 'Can delete categorymodel', 51, 'delete_categorymodel'),
+(204, 'Can view categorymodel', 51, 'view_categorymodel');
 
 -- --------------------------------------------------------
 
@@ -342,7 +346,49 @@ CREATE TABLE `core_businesslogs` (
 --
 
 INSERT INTO `core_businesslogs` (`id`, `amount`, `date`, `status`, `child_id_id`, `parent_id_id`, `plan_id`) VALUES
-(9, '150', '2023-09-05 09:48:09.877008', '1', 155, 154, 21);
+(9, '150', '2023-09-05 09:48:09.877008', '1', 155, 154, 21),
+(10, '100', '2023-09-06 05:09:45.371314', '1', 158, 154, 21),
+(11, '50', '2023-09-06 05:09:45.371314', '1', 156, 155, 21),
+(12, '50', '2023-09-06 05:09:45.371314', '1', 155, 154, 21),
+(13, '100', '2023-09-06 05:09:45.371314', '1', 159, 156, 21),
+(14, '100', '2023-09-06 05:09:45.371314', '1', 156, 155, 21),
+(15, '100', '2023-09-06 05:09:45.371314', '1', 155, 154, 21),
+(16, '100', '2023-09-06 05:09:45.371314', '1', 160, 159, 21),
+(17, '100', '2023-09-06 05:09:45.371314', '1', 159, 156, 21),
+(18, '100', '2023-09-06 05:09:45.371314', '1', 156, 155, 21),
+(19, '100', '2023-09-06 05:09:45.371314', '1', 155, 154, 21),
+(20, '300', '2023-09-06 05:09:45.371314', '1', 157, 155, 21),
+(21, '300', '2023-09-06 05:09:45.371314', '1', 155, 154, 21);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `core_categorymodel`
+--
+
+CREATE TABLE `core_categorymodel` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `min_amount` varchar(250) NOT NULL,
+  `max_amount` varchar(250) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `plan_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `core_categorymodel`
+--
+
+INSERT INTO `core_categorymodel` (`id`, `name`, `min_amount`, `max_amount`, `status`, `plan_id`) VALUES
+(1, 'ART', '50', '1000', '1', 21),
+(2, 'LAND', '1050', '2000', '1', 21),
+(3, 'CHARACTER', '2050', '2500', '1', 21),
+(4, 'ART', '2550', '3000', '1', 23),
+(5, 'LAND', '3050', '4000', '1', 23),
+(6, 'CHARACTER', '4050', '5000', '1', 23),
+(7, 'ART', '5050', '7000', '1', 22),
+(8, 'LAND', '7050', '9000', '1', 22),
+(9, 'CHARACTER', '9050', '10000', '1', 22);
 
 -- --------------------------------------------------------
 
@@ -446,6 +492,26 @@ CREATE TABLE `core_levelincome` (
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `core_levelincome`
+--
+
+INSERT INTO `core_levelincome` (`id`, `level_income`, `child_id_id`, `level_id`, `parent_id_id`, `date`, `status`) VALUES
+(422, '1.5', 155, 1, 154, '2023-09-06 00:00:00', '1'),
+(423, '2.25', 155, 1, 154, '2023-09-06 00:00:00', '1'),
+(424, '1.5', 158, 1, 154, '2023-09-06 00:00:00', '1'),
+(425, '0.75', 156, 1, 155, '2023-09-06 00:00:00', '1'),
+(426, '0.5', 156, 2, 154, '2023-09-06 00:00:00', '1'),
+(427, '1.5', 159, 1, 156, '2023-09-06 00:00:00', '1'),
+(428, '1.0', 159, 2, 155, '2023-09-06 00:00:00', '1'),
+(429, '0.7000000000000001', 159, 3, 154, '2023-09-06 00:00:00', '1'),
+(430, '1.5', 160, 1, 159, '2023-09-06 00:00:00', '1'),
+(431, '1.0', 160, 2, 156, '2023-09-06 00:00:00', '1'),
+(432, '0.7000000000000001', 160, 3, 155, '2023-09-06 00:00:00', '1'),
+(433, '0.5', 160, 4, 154, '2023-09-06 00:00:00', '1'),
+(434, '4.5', 157, 1, 155, '2023-09-06 00:00:00', '1'),
+(435, '3.0', 157, 2, 154, '2023-09-06 00:00:00', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -509,7 +575,36 @@ INSERT INTO `core_login_history` (`id`, `login_time`, `logout_time`, `user_id`, 
 (262, '2023-09-05 06:51:26.534848', '', 161, 'NA', 'NA', '127.0.0.1', 'NA'),
 (263, '2023-09-05 09:57:29.926059', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
 (264, '2023-09-05 10:15:30.090538', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
-(265, '2023-09-05 11:08:55.634928', '', 154, 'NA', 'NA', '127.0.0.1', 'NA');
+(265, '2023-09-05 11:08:55.634928', '2023-09-06 05:09:26.851485', 154, 'NA', 'NA', '127.0.0.1', 'NA'),
+(266, '2023-09-06 05:09:56.269080', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(267, '2023-09-06 05:10:18.733123', '2023-09-06 05:11:39.100491', 158, 'NA', 'NA', '127.0.0.1', 'NA'),
+(268, '2023-09-06 05:11:49.601475', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(269, '2023-09-06 05:12:11.271463', '2023-09-06 05:12:30.960902', 156, 'NA', 'NA', '127.0.0.1', 'NA'),
+(270, '2023-09-06 05:12:41.513611', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(271, '2023-09-06 05:12:56.799128', '2023-09-06 05:13:27.183930', 159, 'NA', 'NA', '127.0.0.1', 'NA'),
+(272, '2023-09-06 05:13:37.360665', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(273, '2023-09-06 05:13:47.502205', '2023-09-06 05:14:23.993948', 160, 'NA', 'NA', '127.0.0.1', 'NA'),
+(274, '2023-09-06 05:14:34.061274', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(275, '2023-09-06 05:14:46.925568', '2023-09-06 05:17:08.317996', 157, 'NA', 'NA', '127.0.0.1', 'NA'),
+(276, '2023-09-06 05:17:19.649646', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(277, '2023-09-06 05:17:35.495217', '2023-09-06 06:43:02.869257', 154, 'NA', 'NA', '127.0.0.1', 'NA'),
+(278, '2023-09-06 06:43:13.652656', '2023-09-06 06:58:26.995435', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(279, '2023-09-06 06:58:54.656373', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(280, '2023-09-06 06:59:29.302300', '2023-09-06 07:04:42.689359', 154, 'NA', 'NA', '127.0.0.1', 'NA'),
+(281, '', '2023-09-06 07:07:47.397928', 164, 'NA', 'NA', '127.0.0.1', 'NA'),
+(282, '2023-09-06 07:07:57.523577', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(283, '2023-09-06 10:12:16.449806', '2023-09-07 05:00:54.958589', 154, 'NA', 'NA', '127.0.0.1', 'NA'),
+(284, '2023-09-07 05:01:06.244277', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(285, '2023-09-07 05:12:24.344900', '2023-09-07 10:18:46.368717', 155, 'NA', 'NA', '127.0.0.1', 'NA'),
+(286, '2023-09-07 10:21:10.905954', '2023-09-07 11:12:25.007889', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(287, '2023-09-07 11:13:19.417897', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(288, '2023-09-07 11:13:39.334050', '2023-09-07 11:15:33.169617', 154, 'NA', 'NA', '127.0.0.1', 'NA'),
+(289, '2023-09-07 11:15:45.649891', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(290, '2023-09-07 11:29:10.340966', '2023-09-07 11:53:00.930589', 154, 'NA', 'NA', '127.0.0.1', 'NA'),
+(291, '2023-09-07 11:53:11.808616', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(292, '2023-09-07 12:14:53.931458', '2023-09-07 12:16:53.900372', 154, 'NA', 'NA', '127.0.0.1', 'NA'),
+(293, '2023-09-07 12:17:05.314027', '', 1, 'NA', 'NA', '127.0.0.1', 'NA'),
+(294, '2023-09-08 04:40:08.369455', '', 154, 'NA', 'NA', '127.0.0.1', 'NA');
 
 -- --------------------------------------------------------
 
@@ -538,9 +633,9 @@ CREATE TABLE `core_membership` (
 --
 
 INSERT INTO `core_membership` (`id`, `name`, `refferal_commision`, `points`, `status`, `directincomepercent`, `max_amount`, `min_amount`, `plan_period`, `roi`, `roi_period`, `staking`, `overall_roi`) VALUES
-(21, 'ART', '0', '20', '1', '50', '2500', '50', NULL, '10', '1', 'False', '200'),
-(22, 'CHARACTER', '0', '20', '1', '50', '5000', '2550', NULL, '11', '1', 'False', '200'),
-(23, 'LAND', '0', '20', '1', '50', '10000', '5050', NULL, '12', '1', 'False', '200');
+(21, 'Package1', '0', '20', '1', '50', '2500', '50', NULL, '10', '1', 'False', '200'),
+(22, 'Package3', '0', '20', '1', '50', '10000', '5050', NULL, '12', '1', 'False', '200'),
+(23, 'Package2', '0', '20', '1', '50', '5000', '2550', NULL, '11', '1', 'False', '200');
 
 -- --------------------------------------------------------
 
@@ -562,7 +657,9 @@ CREATE TABLE `core_newsmodel` (
 
 INSERT INTO `core_newsmodel` (`id`, `news`, `date`, `status`, `datato`) VALUES
 (1, 'hello', '2023-08-03', 'True', '2023-08-16'),
-(2, 'hello how are you', '2023-08-21', 'True', '2023-08-29');
+(2, 'hello how are you', '2023-08-21', 'True', '2023-08-29'),
+(3, 'hello', '2023-09-06', 'True', '2023-09-07'),
+(4, 'Abc ', '2023-09-06', 'True', '2023-09-14');
 
 -- --------------------------------------------------------
 
@@ -596,6 +693,14 @@ CREATE TABLE `core_status_activity` (
   `amount_freezed` varchar(200) NOT NULL,
   `user_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `core_status_activity`
+--
+
+INSERT INTO `core_status_activity` (`id`, `time`, `status`, `amount_freezed`, `user_id`) VALUES
+(73, '2023-09-06 07:06:40.870233', '0', '150', 161),
+(74, '2023-09-06 07:06:40.870233', '1', '0', 161);
 
 -- --------------------------------------------------------
 
@@ -662,8 +767,13 @@ CREATE TABLE `core_userunlockedlevel` (
 --
 
 INSERT INTO `core_userunlockedlevel` (`id`, `level_id`, `user_id`, `status`) VALUES
-(14, 1, 155, '1'),
-(15, 2, 154, '1');
+(14, 3, 155, '1'),
+(15, 3, 154, '1'),
+(16, 1, 158, '1'),
+(17, 2, 156, '1'),
+(18, 2, 159, '1'),
+(19, 1, 160, '1'),
+(20, 1, 157, '1');
 
 -- --------------------------------------------------------
 
@@ -681,8 +791,32 @@ CREATE TABLE `core_userwithdrawls` (
   `wallet_id` bigint(20) NOT NULL,
   `type` varchar(200) NOT NULL,
   `date` varchar(200) NOT NULL,
-  `fees` varchar(200) NOT NULL
+  `fees` varchar(200) NOT NULL,
+  `bonus_amount` varchar(250) NOT NULL,
+  `direct_amount` varchar(250) NOT NULL,
+  `level_amount` varchar(250) NOT NULL,
+  `roi_amount` varchar(200) NOT NULL,
+  `deposit_amount` varchar(250) NOT NULL,
+  `topup_amount` varchar(250) NOT NULL,
+  `transfer_amount` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `core_userwithdrawls`
+--
+
+INSERT INTO `core_userwithdrawls` (`id`, `status`, `amount`, `currency`, `address`, `user_id`, `wallet_id`, `type`, `date`, `fees`, `bonus_amount`, `direct_amount`, `level_amount`, `roi_amount`, `deposit_amount`, `topup_amount`, `transfer_amount`) VALUES
+(16, '0', '80.0', 'USDT', '', 154, 125, '0', '2023-09-06 10:08:25.412418', '20.0', '250', '0', '0', '0', '0', '0', '0'),
+(17, '2', '4.0', 'USDT', '', 155, 126, '0', '2023-09-07 09:40:48.158782', '1.0', '250', '5', '0', '0', '0', '0', '0'),
+(18, '1', '80.0', 'USDT', '', 155, 126, '0', '2023-09-07 09:40:48.158782', '20.0', '0', '0.0', '0.0', '0.0', '0.0', '0', '0'),
+(19, '0', '40.0', 'USDT', '', 155, 126, '0', '2023-09-07 09:48:33.093277', '10.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0', '0'),
+(20, '0', '40.0', 'USDT', '', 155, 126, '0', '2023-09-07 09:57:07.973847', '10.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0', '0'),
+(21, '0', '40.0', 'USDT', '', 155, 126, '0', '2023-09-07 10:03:06.384935', '10.0', '0.0', '0.0', '0.0', '50.0', '0.0', '0', '0'),
+(22, '0', '40.0', 'USDT', '', 155, 126, '0', '2023-09-07 10:03:06.384935', '10.0', '0.0', '5.5', '0.0', '0.0', '0.0', '0', '0'),
+(23, '0', '4.0', 'USDT', '', 155, 126, '0', '2023-09-07 10:13:24.103097', '1.0', '250', '5', '0', '0', '0', '0', '0'),
+(24, '0', '80.0', 'USDT', '', 155, 126, '0', '2023-09-07 10:17:12.359876', '20.0', '0.0', '0.0', '0.0', '100.0', '0.0', '0', '0.0'),
+(25, '0', '48.0', 'USDT', '', 155, 126, '0', '2023-09-07 10:17:12.359876', '12.0', '20.0', '0.0', '10.5', '0.0', '29.5', '0', '0.0'),
+(26, '0', '16.0', 'USDT', '', 154, 125, '0', '2023-09-07 11:13:14.243493', '4.0', '0.0', '0.0', '0.0', '20.0', '0.0', '0', '0.0');
 
 -- --------------------------------------------------------
 
@@ -695,15 +829,16 @@ CREATE TABLE `core_withdrawsettingmodel` (
   `min_amount` varchar(200) NOT NULL,
   `fees` varchar(200) NOT NULL,
   `max_amount` varchar(200) NOT NULL,
-  `bscaddress` varchar(250) NOT NULL
+  `bscaddress` varchar(250) NOT NULL,
+  `dates` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `core_withdrawsettingmodel`
 --
 
-INSERT INTO `core_withdrawsettingmodel` (`id`, `min_amount`, `fees`, `max_amount`, `bscaddress`) VALUES
-(1, '5', '20', '100', '0x83F928c66F437507EB399F8E91e84f2fD15C57Ec');
+INSERT INTO `core_withdrawsettingmodel` (`id`, `min_amount`, `fees`, `max_amount`, `bscaddress`, `dates`) VALUES
+(1, '5', '20', '5000', 'uui4g3iug4iu3b4i3u5gi4g5u', '7,20');
 
 -- --------------------------------------------------------
 
@@ -757,7 +892,8 @@ INSERT INTO `current_level` (`id`, `level_id`, `points`, `user_id`) VALUES
 (132, '0', '0', 161),
 (133, '0', '0', 162),
 (134, '0', '0', 163),
-(135, '0', '0', 1);
+(135, '0', '0', 1),
+(136, '0', '0', 164);
 
 -- --------------------------------------------------------
 
@@ -801,6 +937,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (4, 'contenttypes', 'contenttype'),
 (35, 'core', 'appsettings'),
 (48, 'core', 'businesslogs'),
+(51, 'core', 'categorymodel'),
 (50, 'core', 'changesponserlogs'),
 (46, 'core', 'cofounderclub'),
 (14, 'core', 'current_level'),
@@ -1045,7 +1182,16 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (181, 'core', '0006_remove_membership_plan_id_alter_businesslogs_date_and_more', '2023-09-05 05:18:17.939981'),
 (182, 'core', '0007_alter_businesslogs_date_alter_businesslogs_plan_id_and_more', '2023-09-05 09:18:55.764148'),
 (183, 'core', '0008_wallet_level_balance_wallet_referral_balance_and_more', '2023-09-05 09:55:24.260813'),
-(184, 'core', '0009_rank_days_alter_businesslogs_date_and_more', '2023-09-05 10:33:24.282833');
+(184, 'core', '0009_rank_days_alter_businesslogs_date_and_more', '2023-09-05 10:33:24.282833'),
+(185, 'core', '0010_withdrawsettingmodel_dates_alter_businesslogs_date_and_more', '2023-09-06 07:43:30.310467'),
+(186, 'core', '0011_alter_businesslogs_date_alter_changesponserlogs_date_and_more', '2023-09-06 07:44:50.145258'),
+(187, 'core', '0012_wallet_bonus_balance_alter_businesslogs_date_and_more', '2023-09-06 10:46:49.626659'),
+(188, 'core', '0013_userwithdrawls_bonus_amount_and_more', '2023-09-06 12:01:12.117562'),
+(189, 'core', '0014_wallet_deposit_balance_wallet_topup_balance_and_more', '2023-09-07 05:54:57.277188'),
+(190, 'core', '0015_userwithdrawls_deposit_amount_and_more', '2023-09-07 08:09:34.823579'),
+(191, 'core', '0016_alter_businesslogs_date_alter_changesponserlogs_date_and_more', '2023-09-07 10:16:02.548113'),
+(192, 'core', '0017_alter_businesslogs_date_alter_changesponserlogs_date_and_more', '2023-09-07 12:52:49.254646'),
+(193, 'core', '0018_usermembership_c_id_alter_businesslogs_date_and_more', '2023-09-08 04:39:01.019318');
 
 -- --------------------------------------------------------
 
@@ -1074,7 +1220,7 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('hwfba1wcdhswflkyaebtgbnb7u1vyh74', 'eyJnb29nbGUtb2F1dGgyX3N0YXRlIjoiUWJzR3VzdEk0ZnU4ek1WMGxzSXFsbUo2c0VCSGF3ZU8ifQ:1qPgYQ:2q6kJEpUsauF07RyzZ3w4EgRZGe8XmOUqabqUsisA3g', '2023-08-12 09:48:06.239172'),
 ('jcb80jcobajwoy76oszrh79e9zwkavwf', 'eyJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJyb2xlIjoidXNlciJ9:1qbbx2:6eL757F-SdFZf8_gCRtd3lXrzT9vy7IxpILmmnDnatQ', '2023-09-14 07:18:48.881040'),
 ('kbssk4dfpm2uijibg6cpmxmbxyyw6gxe', 'e30:1qNsmM:A_OhqFFSGsWQtlshPkfubOHR9KAPAx4QHvrC5bOTfEo', '2023-08-07 10:27:02.095952'),
-('kxukd2jsnghzu56jvck5s1zp2auz02po', '.eJwVjssOgjAUBf-la0PCQw2uNBjNRcVHQJQdJVcppaAtiGL8d8ty5pzFfIlEhQ2ZkVC2SEakqTlWGvHj53SdsT3zIerBDBgoqE7jzIMJ8Mfl7PmuoU8ljVcPOkhh5lSUi8Qy8zTu2qvlNsA6llzyDor6HRS834fcCcKdeTsatmLTjy1e3tGqnrZw2nhJA9wdJkLe-4gnm206jr3o6SjQVShSVuoqkVZsfh_AyGqhB1mXqH2rUJLfH511RKQ:1qdTvT:picZy9S67hITvq0yYLOrfpD4WC98ygJ2Jrg4MkgiCqE', '2023-09-19 11:08:55.643346'),
+('kxukd2jsnghzu56jvck5s1zp2auz02po', '.eJwVjssOgjAUBf-layHgK8GV-MKLEdGIgDvAKoW2kEIDYvx363LmnMV8kMANbtECXYXEaITaqsRcIX67eepk5ERcCAYwPQIN8MssW8Mcyjq6rV1LVyeahrs6_Utm5imj9n1s5knYyXhstUA6co_yDoqq94rSOBZHw9vY0-dZF74RaB2xa-fRg6Vx5xzXwYz6_GRPQrka5Ha_YiLQDkOmqjBLCFVVLOFk-fqDnlVMDaKiWHnZYIG-P2UlRAg:1qeTHs:F2OPkGcHrcn5MjX8jUZj_xD0-hSkeYfNwYWNivulXeM', '2023-09-22 04:40:08.381124'),
 ('le86bs9uj50uep2puqff8d1ysy2rtuhp', 'eyJlbWFpbCI6InNhY2hpbmJveGZ5QGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIn0:1qMpaP:KLW4yo13IT8KTBlVdFV-qX06AaNkCTOZaWP5Cc9tFG4', '2023-08-04 12:50:21.881240'),
 ('m8pqyztf92uu04732qxn06gwqek1f69a', '.eJxVjsEKwjAQRP8lZy1Jumlab-JBKRZFEb2FJE3aam3QRBDEf7dqD3padnZn5j2QkLdQi5s3V9GUaIIIBTT6VZXUJ9O9T97pRrZCu6uJBtVHlXNVa6L5Z6ymvY3--2vp696MIbPAE44tozZlmYQMbEwNIalW2gKxvExSDIqyOCM0AawUJxYwZTxmRPWhQ_8nupU-iNZVTfcD-GUZOzlQ_O3CBxlM_7U9H-K7DQVJl5fDfG1m-6TLF9Vxs8uh8AuGni9Wd1t4:1qPhVh:AvK3u5aXmgs-odl0YoRWTXx3hv-OWG6ttDJMqFDSTiE', '2023-08-12 10:49:21.969154'),
 ('mmm3sk6yb7gdcbex6cyajr4iyv3689rn', 'eyJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJyb2xlIjoidXNlciJ9:1qZA9I:PjX8x2qnHP9JFDcHfaw0Wh2SJ3qBr8v0O8eyQXFzFk0', '2023-09-07 13:13:20.626249'),
@@ -1099,6 +1245,55 @@ CREATE TABLE `farmingroilogs` (
   `user_id` bigint(20) NOT NULL,
   `roi` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `farmingroilogs`
+--
+
+INSERT INTO `farmingroilogs` (`id`, `date`, `status`, `plan_id`, `user_id`, `roi`) VALUES
+(1, '2023-09-06 00:00:00', '1', 45, 155, '10.0'),
+(2, '2023-09-06 00:00:00', '1', 46, 155, '15.0'),
+(3, '2023-09-06 00:00:00', '1', 47, 154, '10.0'),
+(4, '2023-09-06 00:00:00', '1', 45, 155, '10.0'),
+(5, '2023-09-06 00:00:00', '1', 46, 155, '15.0'),
+(6, '2023-09-06 00:00:00', '1', 47, 154, '10.0'),
+(7, '2023-09-06 00:00:00', '1', 48, 158, '10.0'),
+(8, '2023-09-06 00:00:00', '1', 49, 156, '5.0'),
+(9, '2023-09-06 00:00:00', '1', 50, 159, '10.0'),
+(10, '2023-09-06 00:00:00', '1', 51, 160, '10.0'),
+(11, '2023-09-06 00:00:00', '1', 52, 157, '30.0'),
+(12, '2023-09-06 00:00:00', '1', 45, 155, '10.0'),
+(13, '2023-09-06 00:00:00', '1', 46, 155, '15.0'),
+(14, '2023-09-06 00:00:00', '1', 47, 154, '10.0'),
+(15, '2023-09-06 00:00:00', '1', 48, 158, '10.0'),
+(16, '2023-09-06 00:00:00', '1', 49, 156, '5.0'),
+(17, '2023-09-06 00:00:00', '1', 50, 159, '10.0'),
+(18, '2023-09-06 00:00:00', '1', 51, 160, '10.0'),
+(19, '2023-09-06 00:00:00', '1', 52, 157, '30.0'),
+(20, '2023-09-06 00:00:00', '1', 45, 155, '10.0'),
+(21, '2023-09-06 00:00:00', '1', 46, 155, '15.0'),
+(22, '2023-09-06 00:00:00', '1', 47, 154, '10.0'),
+(23, '2023-09-06 00:00:00', '1', 48, 158, '10.0'),
+(24, '2023-09-06 00:00:00', '1', 49, 156, '5.0'),
+(25, '2023-09-06 00:00:00', '1', 50, 159, '10.0'),
+(26, '2023-09-06 00:00:00', '1', 51, 160, '10.0'),
+(27, '2023-09-06 00:00:00', '1', 52, 157, '30.0'),
+(28, '2023-09-06 00:00:00', '1', 45, 155, '10.0'),
+(29, '2023-09-06 00:00:00', '1', 46, 155, '15.0'),
+(30, '2023-09-06 00:00:00', '1', 47, 154, '10.0'),
+(31, '2023-09-06 00:00:00', '1', 48, 158, '10.0'),
+(32, '2023-09-06 00:00:00', '1', 49, 156, '5.0'),
+(33, '2023-09-06 00:00:00', '1', 50, 159, '10.0'),
+(34, '2023-09-06 00:00:00', '1', 51, 160, '10.0'),
+(35, '2023-09-06 00:00:00', '1', 52, 157, '30.0'),
+(36, '2023-09-06 00:00:00', '1', 45, 155, '10.0'),
+(37, '2023-09-06 00:00:00', '1', 46, 155, '15.0'),
+(38, '2023-09-06 00:00:00', '1', 47, 154, '10.0'),
+(39, '2023-09-06 00:00:00', '1', 48, 158, '10.0'),
+(40, '2023-09-06 00:00:00', '1', 49, 156, '5.0'),
+(41, '2023-09-06 00:00:00', '1', 50, 159, '10.0'),
+(42, '2023-09-06 00:00:00', '1', 51, 160, '10.0'),
+(43, '2023-09-06 00:00:00', '1', 52, 157, '30.0');
 
 -- --------------------------------------------------------
 
@@ -1382,7 +1577,8 @@ INSERT INTO `transactions` (`id`, `wallet_id`, `amount`, `coin`, `created_at`, `
 (4, 129, '200', 'n/a', '2023-09-01 14:16:17.404583', 'n/a', '1', 'NA', '1', 158),
 (5, 128, '300', 'n/a', '2023-09-01 14:16:32.004404', 'n/a', '1', 'NA', '1', 157),
 (6, 127, '150', 'n/a', '2023-09-01 14:17:01.605072', 'n/a', '1', 'NA', '1', 156),
-(7, 126, '200', 'n/a', '2023-09-01 14:17:25.595100', 'n/a', '1', 'NA', '1', 155);
+(7, 126, '200', 'n/a', '2023-09-01 14:17:25.595100', 'n/a', '1', 'NA', '1', 155),
+(8, 125, '500', 'n/a', '2023-09-07 10:41:46.875579', 'n/a', '1', 'NA', '1', 154);
 
 -- --------------------------------------------------------
 
@@ -1400,17 +1596,24 @@ CREATE TABLE `usermembership` (
   `booster_plan` varchar(200) NOT NULL,
   `max_roi` varchar(200) NOT NULL,
   `roi_recieved` varchar(200) NOT NULL,
-  `next_date` varchar(200) NOT NULL
+  `next_date` varchar(200) NOT NULL,
+  `c_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `usermembership`
 --
 
-INSERT INTO `usermembership` (`id`, `amount`, `plan_id`, `user_id`, `date`, `status`, `booster_plan`, `max_roi`, `roi_recieved`, `next_date`) VALUES
-(45, '100', 21, 155, '2023-09-05 09:46:37.897040', '1', 'False', '200', '0', '2023-09-06 09:46:49.197438'),
-(46, '150', 21, 155, '2023-09-05 09:48:09.877988', '1', 'False', '200', '0', '2023-09-06 09:48:29.399068'),
-(47, '100', 21, 154, '2023-09-05 12:08:46.366860', '1', 'False', '200', '0', '2023-09-06 12:18:26.195733');
+INSERT INTO `usermembership` (`id`, `amount`, `plan_id`, `user_id`, `date`, `status`, `booster_plan`, `max_roi`, `roi_recieved`, `next_date`, `c_id`) VALUES
+(45, '100', 21, 155, '2023-09-06 05:52:56.364849', '1', 'False', '200', '60.0', '2023-09-07 06:23:36.933398', 1),
+(46, '150', 21, 155, '2023-09-06 05:52:56.364849', '1', 'False', '200', '90.0', '2023-09-07 06:23:36.956807', 1),
+(47, '100', 21, 154, '2023-09-06 05:52:56.364849', '1', 'False', '200', '60.0', '2023-09-07 06:23:36.981074', 1),
+(48, '100', 21, 158, '2023-09-06 05:52:56.364849', '1', 'False', '200', '50.0', '2023-09-07 06:23:36.992441', 1),
+(49, '50', 21, 156, '2023-09-06 05:52:56.364849', '1', 'False', '200', '25.0', '2023-09-07 06:23:37.013613', 1),
+(50, '100', 21, 159, '2023-09-06 05:52:56.364849', '1', 'False', '200', '50.0', '2023-09-07 06:23:37.051755', 1),
+(51, '100', 21, 160, '2023-09-06 05:52:56.364849', '1', 'False', '200', '50.0', '2023-09-07 06:23:37.103111', 1),
+(52, '300', 21, 157, '2023-09-06 05:52:56.364849', '1', 'False', '200', '150.0', '2023-09-07 06:23:37.187075', 1),
+(53, '500', 21, 154, '2023-09-07 11:28:15.328662', '1', 'False', '200', '0', '2023-09-08 11:29:31.686958', 1);
 
 -- --------------------------------------------------------
 
@@ -1453,16 +1656,17 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `is_staff`, `is_active`, `date_joined`, `email`, `verified_at`, `role`, `status`, `updated_at`, `created_at`, `remember_token`, `referal_by`, `referal_code`, `activation_date`, `paid_members`, `phone_no`, `business`, `farming_roi_status`, `level_income_status`, `staking_roi_status`) VALUES
 (1, 'pbkdf2_sha256$390000$es8d4VIJU7lhBF1my3ResO$sfV6jPjfupSADl7tVFGPJXu0gvRSsOPUCStylUvCt1g=', NULL, 1, 'shubham', 'Shubham', 'Sharma', 1, 1, '2023-07-09 11:28:45.501935', 'shubhamboxfy@gmail.com', 'True', 'admin', '1', '2023-07-09 11:28:26.336200', '1691230283', '9568', NULL, 'b89735d6', 'N/A', 'True', NULL, '0', '1', '1', '1'),
-(154, 'pbkdf2_sha256$390000$8e0bIHBRSIjOhtnbHP0nIE$aHbi/WWd8DkNPQnFsbfAFEQOPfpFIxBsckqvMSF1jcc=', NULL, 0, 'mani@gmail.com', 'mani', '123', 0, 1, '2023-09-01 05:53:42.284082', 'mani@gmail.com', 'True', 'user', '1', '2023-09-01 05:50:59.125046', '2023-09-01 05:50:59.125046', '2330', NULL, '653ad733', '1693916306.2356732', 'True', NULL, '250.0', '1', '1', '1'),
-(155, 'pbkdf2_sha256$390000$zqIWvkGKBi29ibZa0JvmnC$EXjcaImhj9ertkrXmBp06bS1xYoHOKZdUnO72LFlY1Y=', NULL, 0, 'AL1693561142', 'karan', 'Rana', 0, 1, '2023-09-01 09:39:02.120454', 'karanrana@yopmail.com', 'True', 'user', '1', '2023-09-01 08:24:34.461280', '2023-09-01 08:24:34.461280', '9561', '653ad733', '956eb118', '1693907309.4091322', 'True', NULL, '0', '1', '1', '1'),
-(156, 'pbkdf2_sha256$390000$NXkrqfYAT1PbEOEAtfVIFw$jio4DmmFx1iWgCV4RXy7QHLCKqkS5Hb5r4t/FCp2VrE=', NULL, 0, 'AL1693567339', 'Shiv', 'Kumar', 0, 1, '2023-09-01 11:22:19.863860', 'Shivkumar@gmail.com', 'True', 'user', '1', '2023-09-01 10:20:17.960332', '2023-09-01 10:20:17.960332', '0900', '956eb118', 'f170c1e4', 'N/A', 'False', NULL, '0', '1', '1', '1'),
-(157, 'pbkdf2_sha256$390000$C3qlMb5CRGuzOF6zIx7PMR$atZdejZj9xDHpcjZoN5T/UNOPaNw0ndebBkbgRupbkE=', NULL, 0, 'AL1693567428', 'Sachin', 'Sachin', 0, 1, '2023-09-01 11:23:48.226357', 'sachinboxfy@gmail.com', 'True', 'user', '1', '2023-09-01 10:20:17.960332', '2023-09-01 10:20:17.960332', '1356', '956eb118', 'b6498e6f', 'N/A', 'False', NULL, '0', '1', '1', '1'),
-(158, 'pbkdf2_sha256$390000$BxfaSYBstxmPjwc7V0hPze$Q0LIpak0Z36UmOjNmWYI+LkX139efRkaCIL7nUfqGJg=', NULL, 0, 'AL1693567630', 'Suneil', 'Kumar', 0, 1, '2023-09-01 11:27:10.794513', 'Suniel@gmail.com', 'True', 'user', '1', '2023-09-01 10:20:17.960332', '2023-09-01 10:20:17.960332', '9727', '653ad733', 'c5b783eb', 'N/A', 'False', NULL, '0', '1', '1', '1'),
-(159, 'pbkdf2_sha256$390000$73tqGKVdvAnhJ0bgTFvXuf$QcYUgBYRyaYwTuQw0MwjLtShL9cWltr8ROLUOMdP2RU=', NULL, 0, 'AL1693634798', 'amar', 'Jot', 0, 1, '2023-09-02 06:06:38.339307', 'amar@gmail.com', 'True', 'user', '1', '2023-09-02 06:02:27.830066', '2023-09-02 06:02:27.830066', '7420', 'f170c1e4', '03f9c3cb', 'N/A', 'False', NULL, '0', '1', '1', '1'),
-(160, 'pbkdf2_sha256$390000$r9JyI2ccETM4GQpvCKUc5B$k3mFJAohKAdkDNG8Wgh2lAX7M/agvyXrTLMK/p2AFBM=', NULL, 0, 'AL1693635671', 'Utkarsh', 'boxfy', 0, 1, '2023-09-02 06:21:11.288932', 'Utkarsh@gmail.com', 'True', 'user', '1', '2023-09-02 06:02:27.830066', '2023-09-02 06:02:27.830066', '1686', '03f9c3cb', '564ae4c5', 'N/A', 'False', NULL, '0', '1', '1', '1'),
+(154, 'pbkdf2_sha256$390000$8e0bIHBRSIjOhtnbHP0nIE$aHbi/WWd8DkNPQnFsbfAFEQOPfpFIxBsckqvMSF1jcc=', NULL, 0, 'mani@gmail.com', 'mani', '123', 0, 1, '2023-09-01 05:53:42.284082', 'mani@gmail.com', 'True', 'user', '1', '2023-09-01 05:50:59.125046', '2023-09-01 05:50:59.125046', '2330', NULL, '653ad733', '1694086171.713192', 'True', NULL, '900.0', '1', '1', '1'),
+(155, 'pbkdf2_sha256$390000$zqIWvkGKBi29ibZa0JvmnC$EXjcaImhj9ertkrXmBp06bS1xYoHOKZdUnO72LFlY1Y=', NULL, 0, 'AL1693561142', 'karan', 'Rana', 0, 1, '2023-09-01 09:39:02.120454', 'karanrana@yopmail.com', 'True', 'user', '1', '2023-09-01 08:24:34.461280', '2023-09-01 08:24:34.461280', '9561', '653ad733', '956eb118', '1693907309.4091322', 'True', NULL, '550.0', '1', '1', '1'),
+(156, 'pbkdf2_sha256$390000$NXkrqfYAT1PbEOEAtfVIFw$jio4DmmFx1iWgCV4RXy7QHLCKqkS5Hb5r4t/FCp2VrE=', NULL, 0, 'AL1693567339', 'Shiv', 'Kumar', 0, 1, '2023-09-01 11:22:19.863860', 'Shivkumar@gmail.com', 'True', 'user', '1', '2023-09-01 10:20:17.960332', '2023-09-01 10:20:17.960332', '0900', '956eb118', 'f170c1e4', '1693977143.730376', 'True', NULL, '200.0', '1', '1', '1'),
+(157, 'pbkdf2_sha256$390000$C3qlMb5CRGuzOF6zIx7PMR$atZdejZj9xDHpcjZoN5T/UNOPaNw0ndebBkbgRupbkE=', NULL, 0, 'AL1693567428', 'Sachin', 'Sachin', 0, 1, '2023-09-01 11:23:48.226357', 'sachinboxfy@gmail.com', 'True', 'user', '1', '2023-09-01 10:20:17.960332', '2023-09-01 10:20:17.960332', '1356', '956eb118', 'b6498e6f', '1693977299.207275', 'True', NULL, '0', '1', '1', '1'),
+(158, 'pbkdf2_sha256$390000$BxfaSYBstxmPjwc7V0hPze$Q0LIpak0Z36UmOjNmWYI+LkX139efRkaCIL7nUfqGJg=', NULL, 0, 'AL1693567630', 'Suneil', 'Kumar', 0, 1, '2023-09-01 11:27:10.794513', 'Suniel@gmail.com', 'True', 'user', '1', '2023-09-01 10:20:17.960332', '2023-09-01 10:20:17.960332', '9727', '653ad733', 'c5b783eb', '1693977091.8135514', 'True', NULL, '0', '1', '1', '1'),
+(159, 'pbkdf2_sha256$390000$73tqGKVdvAnhJ0bgTFvXuf$QcYUgBYRyaYwTuQw0MwjLtShL9cWltr8ROLUOMdP2RU=', NULL, 0, 'AL1693634798', 'amar', 'Jot', 0, 1, '2023-09-02 06:06:38.339307', 'amar@gmail.com', 'True', 'user', '1', '2023-09-02 06:02:27.830066', '2023-09-02 06:02:27.830066', '7420', 'f170c1e4', '03f9c3cb', '1693977187.4794242', 'True', NULL, '100.0', '1', '1', '1'),
+(160, 'pbkdf2_sha256$390000$r9JyI2ccETM4GQpvCKUc5B$k3mFJAohKAdkDNG8Wgh2lAX7M/agvyXrTLMK/p2AFBM=', NULL, 0, 'AL1693635671', 'Utkarsh', 'boxfy', 0, 1, '2023-09-02 06:21:11.288932', 'Utkarsh@gmail.com', 'True', 'user', '1', '2023-09-02 06:02:27.830066', '2023-09-02 06:02:27.830066', '1686', '03f9c3cb', '564ae4c5', '1693977252.2288694', 'True', NULL, '0', '1', '1', '1'),
 (161, 'pbkdf2_sha256$390000$ZSi5uZuHeU6a8ERVCXGv1K$XH8vuFuhOHGs05kWj7reUB6EcN4CKgwBQfaSLwMpgT8=', NULL, 0, 'BS1693811311T', 'Aman', 'Boxfy@gmail.com', 0, 1, '2023-09-04 07:08:31.450439', 'sachin001@gmail.com', 'True', 'user', '1', '2023-09-04 07:08:00.923271', '1693827555', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhY2hpbjAwMUBnbWFpbC5jb20iLCJleHAiOjE2OTM4Mjc2NzV9.yggewyo_YpjkB6VEMU5-LPbW1EfNu1rGHOFDe4BUvJ0', NULL, '76f2a0bc', 'N/A', 'False', NULL, '0', '1', '1', '1'),
 (162, 'pbkdf2_sha256$390000$2RdPSknGyk6d45E4mpBToH$4vthAHYELR3IhOJEB1eagxdnwpggiGzrPiW+n0UMvlE=', NULL, 0, 'BS1693830806T', 'sachin', 'duggi', 0, 1, '2023-09-04 12:33:26.217387', 'abc@gmail.com', 'True', 'user', '1', '2023-09-04 12:31:52.192485', '2023-09-04 12:31:52.192485', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJleHAiOjE2OTM4MzA5MjZ9.mIxtUmbOZ3qHYVpRoRbrrJhJnFXrzuk6e-4HfH9RmKM', NULL, '80abb225', 'N/A', 'False', NULL, '0', '1', '1', '1'),
-(163, 'pbkdf2_sha256$390000$1WsZx4Weo23Fqc02Gm9eRI$bDRic2LuGVQtpD47bfNA8GKiOntftXpX7g4dqx0fge0=', NULL, 0, 'BS1693884389T', 'Ankit', 'Dhayani', 0, 1, '2023-09-05 03:26:29.382983', 'ankit@gmail.com', 'True', 'user', '1', '2023-09-05 03:25:29.205989', '2023-09-05 03:25:29.205989', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFua2l0QGdtYWlsLmNvbSIsImV4cCI6MTY5Mzg4NDUwOX0.k0JCNp0H8RvXEyykW_27Ab5RXk9mf2ysf5J2HgtPQvo', NULL, '8db931f6', 'N/A', 'False', NULL, '0', '1', '1', '1');
+(163, 'pbkdf2_sha256$390000$1WsZx4Weo23Fqc02Gm9eRI$bDRic2LuGVQtpD47bfNA8GKiOntftXpX7g4dqx0fge0=', NULL, 0, 'BS1693884389T', 'Ankit', 'Dhayani', 0, 1, '2023-09-05 03:26:29.382983', 'ankit@gmail.com', 'True', 'user', '1', '2023-09-05 03:25:29.205989', '2023-09-05 03:25:29.205989', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFua2l0QGdtYWlsLmNvbSIsImV4cCI6MTY5Mzg4NDUwOX0.k0JCNp0H8RvXEyykW_27Ab5RXk9mf2ysf5J2HgtPQvo', NULL, '8db931f6', 'N/A', 'False', NULL, '0', '1', '1', '1'),
+(164, 'pbkdf2_sha256$390000$Oodx9UFA25mZCDCPt72a4o$2dmf/GwuuPoUYJhrhSjaKLAkgtYpbXW4qcJ6n/Q0UvI=', NULL, 0, 'BS1693984037T', 's', 's', 0, 1, '2023-09-06 07:07:17.587538', 'abc@yopmail.com', 'True', 'user', '1', '2023-09-06 07:06:40.864150', '2023-09-06 07:06:40.864150', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiY0B5b3BtYWlsLmNvbSIsImV4cCI6MTY5Mzk4NDE1N30.gUYgi8S6DtPa5aHQRm3lR9NFCl4fWanIDhKNYiicCwU', '653ad733', 'b1954753', 'N/A', 'False', NULL, '0', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -1544,7 +1748,12 @@ CREATE TABLE `user_referral` (
 --
 
 INSERT INTO `user_referral` (`id`, `child_id_id`, `level_id`, `parent_id_id`, `refferal_income`, `date`, `status`) VALUES
-(106, 155, 1, 154, '7.5', '2023-09-05 09:48:09.881985', '1');
+(106, 155, 1, 154, '7.5', '2023-09-05 09:48:09.881985', '1'),
+(107, 158, 1, 154, '5.0', '2023-09-06 05:09:45.383583', '1'),
+(108, 156, 1, 155, '2.5', '2023-09-06 05:09:45.383583', '1'),
+(109, 159, 1, 156, '5.0', '2023-09-06 05:09:45.383583', '1'),
+(110, 160, 1, 159, '5.0', '2023-09-06 05:09:45.383583', '1'),
+(111, 157, 1, 155, '15.0', '2023-09-06 05:09:45.383583', '1');
 
 -- --------------------------------------------------------
 
@@ -1572,25 +1781,29 @@ CREATE TABLE `wallet` (
   `reserved_balance` varchar(200) NOT NULL,
   `level_balance` varchar(200) NOT NULL,
   `referral_balance` varchar(200) NOT NULL,
-  `roi_balance` varchar(200) NOT NULL
+  `roi_balance` varchar(200) NOT NULL,
+  `bonus_balance` varchar(250) NOT NULL,
+  `deposit_balance` varchar(250) NOT NULL,
+  `topup_balance` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `wallet`
 --
 
-INSERT INTO `wallet` (`id`, `avaliable_balance`, `freezed_balance`, `user_id`, `reserved_balance`, `level_balance`, `referral_balance`, `roi_balance`) VALUES
-(1, '520.0', '0', 1, '0', '0', '0', '0'),
-(125, '7.5', '0', 154, '0', '0', '0', '0'),
-(126, '750.0', '0', 155, '0', '0', '0', '0'),
-(127, '150.0', '0', 156, '0', '0', '0', '0'),
-(128, '300.0', '0', 157, '0', '0', '0', '0'),
-(129, '200.0', '0', 158, '0', '0', '0', '0'),
-(130, '0', '0', 159, '0', '0', '0', '0'),
-(131, '0', '0', 160, '0', '0', '0', '0'),
-(132, '0', '0', 161, '0', '0', '0', '0'),
-(133, '0', '0', 162, '0', '0', '0', '0'),
-(134, '0', '0', 163, '0', '0', '0', '0');
+INSERT INTO `wallet` (`id`, `avaliable_balance`, `freezed_balance`, `user_id`, `reserved_balance`, `level_balance`, `referral_balance`, `roi_balance`, `bonus_balance`, `deposit_balance`, `topup_balance`) VALUES
+(1, '520.0', '0', 1, '0', '0', '0', '0', '0', '0', '0'),
+(125, '42.5', '0', 154, '0', '0', '0', '0', '0', '0', '42.5'),
+(126, '550.5', '0', 155, '0.0', '0.0', '5.0', '0.0', '0', '70.5', '0.0'),
+(127, '150.0', '0', 156, '0', '20.0', '5.0', '25.0', '0', '0', '0'),
+(128, '150.0', '0', 157, '0', '0', '0', '150.0', '0', '0', '0'),
+(129, '150.0', '0', 158, '0', '0', '0', '50.0', '0', '0', '0'),
+(130, '165.0', '0', 159, '0', '10.0', '5.0', '50.0', '0', '0', '0'),
+(131, '50.0', '0', 160, '0', '0', '0', '50.0', '0', '0', '0'),
+(132, '0', '150.0', 161, '0', '0', '0', '0', '0', '0', '0'),
+(133, '220', '0', 162, '0', '0', '0', '0', '0', '0', '0'),
+(134, '150', '0', 163, '0', '0', '0', '0', '0', '0', '0'),
+(135, '0', '0', 164, '0', '0', '0', '0', '0', '0', '0');
 
 --
 -- Indexes for dumped tables
@@ -1648,6 +1861,13 @@ ALTER TABLE `core_businesslogs`
   ADD KEY `core_businesslogs_child_id_id_b59cae4f_fk_users_id` (`child_id_id`),
   ADD KEY `core_businesslogs_parent_id_id_b1d7e131_fk_users_id` (`parent_id_id`),
   ADD KEY `core_businesslogs_plan_id_3e9a372a_fk_core_plansmodel_id` (`plan_id`);
+
+--
+-- Indexes for table `core_categorymodel`
+--
+ALTER TABLE `core_categorymodel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `core_categorymodel_plan_id_8fd1416a_fk_core_membership_id` (`plan_id`);
 
 --
 -- Indexes for table `core_changesponserlogs`
@@ -1923,7 +2143,8 @@ ALTER TABLE `transactions`
 ALTER TABLE `usermembership`
   ADD PRIMARY KEY (`id`),
   ADD KEY `core_usermembership_plan_id_063bcaed_fk_core_membership_id` (`plan_id`),
-  ADD KEY `core_usermembership_user_id_dfa7c16b_fk_users_id` (`user_id`);
+  ADD KEY `core_usermembership_user_id_dfa7c16b_fk_users_id` (`user_id`),
+  ADD KEY `usermembership_c_id_06e3f80a_fk_core_categorymodel_id` (`c_id`);
 
 --
 -- Indexes for table `users`
@@ -2020,7 +2241,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT for table `core_appsettings`
@@ -2032,6 +2253,12 @@ ALTER TABLE `core_appsettings`
 -- AUTO_INCREMENT for table `core_businesslogs`
 --
 ALTER TABLE `core_businesslogs`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `core_categorymodel`
+--
+ALTER TABLE `core_categorymodel`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
@@ -2062,13 +2289,13 @@ ALTER TABLE `core_gallaryimages`
 -- AUTO_INCREMENT for table `core_levelincome`
 --
 ALTER TABLE `core_levelincome`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=436;
 
 --
 -- AUTO_INCREMENT for table `core_login_history`
 --
 ALTER TABLE `core_login_history`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
 
 --
 -- AUTO_INCREMENT for table `core_membership`
@@ -2080,7 +2307,7 @@ ALTER TABLE `core_membership`
 -- AUTO_INCREMENT for table `core_newsmodel`
 --
 ALTER TABLE `core_newsmodel`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `core_plansmodel`
@@ -2092,7 +2319,7 @@ ALTER TABLE `core_plansmodel`
 -- AUTO_INCREMENT for table `core_status_activity`
 --
 ALTER TABLE `core_status_activity`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `core_ticketmodel`
@@ -2116,13 +2343,13 @@ ALTER TABLE `core_usercofounderclub`
 -- AUTO_INCREMENT for table `core_userunlockedlevel`
 --
 ALTER TABLE `core_userunlockedlevel`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `core_userwithdrawls`
 --
 ALTER TABLE `core_userwithdrawls`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `core_withdrawsettingmodel`
@@ -2140,7 +2367,7 @@ ALTER TABLE `core_youtubevideo`
 -- AUTO_INCREMENT for table `current_level`
 --
 ALTER TABLE `current_level`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
@@ -2152,19 +2379,19 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 
 --
 -- AUTO_INCREMENT for table `farmingroilogs`
 --
 ALTER TABLE `farmingroilogs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `levels`
@@ -2248,19 +2475,19 @@ ALTER TABLE `stakingroilogs`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `usermembership`
 --
 ALTER TABLE `usermembership`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT for table `userstaking`
@@ -2290,7 +2517,7 @@ ALTER TABLE `user_rank`
 -- AUTO_INCREMENT for table `user_referral`
 --
 ALTER TABLE `user_referral`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `verify`
@@ -2302,7 +2529,7 @@ ALTER TABLE `verify`
 -- AUTO_INCREMENT for table `wallet`
 --
 ALTER TABLE `wallet`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- Constraints for dumped tables
@@ -2340,6 +2567,12 @@ ALTER TABLE `core_businesslogs`
   ADD CONSTRAINT `core_businesslogs_child_id_id_b59cae4f_fk_users_id` FOREIGN KEY (`child_id_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `core_businesslogs_parent_id_id_b1d7e131_fk_users_id` FOREIGN KEY (`parent_id_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `core_businesslogs_plan_id_3e9a372a_fk_core_membership_id` FOREIGN KEY (`plan_id`) REFERENCES `core_membership` (`id`);
+
+--
+-- Constraints for table `core_categorymodel`
+--
+ALTER TABLE `core_categorymodel`
+  ADD CONSTRAINT `core_categorymodel_plan_id_8fd1416a_fk_core_membership_id` FOREIGN KEY (`plan_id`) REFERENCES `core_membership` (`id`);
 
 --
 -- Constraints for table `core_changesponserlogs`
@@ -2467,7 +2700,8 @@ ALTER TABLE `transactions`
 --
 ALTER TABLE `usermembership`
   ADD CONSTRAINT `core_usermembership_plan_id_063bcaed_fk_core_membership_id` FOREIGN KEY (`plan_id`) REFERENCES `core_membership` (`id`),
-  ADD CONSTRAINT `core_usermembership_user_id_dfa7c16b_fk_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `core_usermembership_user_id_dfa7c16b_fk_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `usermembership_c_id_06e3f80a_fk_core_categorymodel_id` FOREIGN KEY (`c_id`) REFERENCES `core_categorymodel` (`id`);
 
 --
 -- Constraints for table `userstaking`
